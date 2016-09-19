@@ -1,0 +1,16 @@
+[Unit]
+Description=Cassandra 2.1 container for demoapp
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeOutStartSec=0
+ExecStartPre=-/usr/bin/docker kill cassandra-demoapp
+ExecStartPre=-/usr/bin/docker rm cassandra-demoapp
+ExecStart=/usr/bin/docker run --name cassandra-demoapp -v /opt/devopstz/cassandra:/var/lib/cassandra -p 9042:9042 cassandra:2.1
+ExecStop=/usr/bin/docker stop cassandra-demoapp
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

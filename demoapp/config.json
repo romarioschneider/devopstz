@@ -1,0 +1,5 @@
+{
+    "ip": ["172.22.22.105"],
+    "keyspace": "fake_data",
+    "cql_version": "3.2.1"
+}

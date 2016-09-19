@@ -1,0 +1,14 @@
+[Unit]
+Description=Flask demoapp which use cassandra-demoapp
+After=docker.service
+Requires=docker.service
+Requires=cassandra-container.service
+ 
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop demoapp
+ExecStart=/usr/bin/docker start -a demoapp
+ExecStop=/usr/bin/docker stop -t 4 demoapp
+ 
+[Install]
+WantedBy=multi-user.target
